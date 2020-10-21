@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">frame</string>
+    <string name="refresh_header_release_text">下拉放开后刷新...</string>
+    <string name="refresh_header_swipe_text">下拉刷新</string>
+    <string name="refresh_header_refreshing_text">正在玩命加载中</string>
+    <string name="refresh_header_complete_text">刷新完毕</string>
+
+    <string name="ble_refresh_header_release_text">下拉松开后开始同步数据</string>
+
+    <string name="load_footer_release_text">上拉放开后加载...</string>
+    <string name="load_footer_swipe_text">上拉加载更多</string>
+    <string name="load_footer_complete_text">加载完毕</string>
+    <string name="title_activity_we_chat_hot">WeChatHotActivity</string>
+
+
+</resources>

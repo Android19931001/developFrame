@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_color"
+    android:orientation="vertical">
+
+    <View style="@style/divider_line_no_padding" />
+
+    <LinearLayout
+        android:id="@+id/ll_select_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:id="@+id/tv_select_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="我是标题"
+                android:textColor="@color/black_color"
+                android:textSize="@dimen/dimen_17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_select_sure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="确定"
+                android:textColor="@color/black_color" />
+        </RelativeLayout>
+
+        <View style="@style/divider_line_no_padding" />
+
+        <ListView
+            android:id="@+id/lv_select"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/color_1000"
+            android:dividerHeight="0.5dp"
+            android:fadingEdge="none"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+    </LinearLayout>
+
+</LinearLayout>

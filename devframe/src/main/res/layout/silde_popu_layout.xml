@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_20dp"
+            android:layout_marginLeft="@dimen/dimen_30dp"
+            android:layout_marginTop="@dimen/dimen_30dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/l_icon_avator" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="用户名"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_user_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_5dp"
+                    android:text="用户账号"
+                    android:textColor="@color/gray_666666" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            style="@style/divider_line_no_padding"
+            android:layout_marginBottom="20dp" />
+
+
+        <TextView
+            android:id="@+id/inventory_management"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:paddingLeft="@dimen/dimen_30dp"
+            android:paddingTop="@dimen/dimen_20dp"
+            android:text="库存管理"
+            android:textColor="@color/gray_666666" />
+
+
+        <TextView
+            android:id="@+id/tv_assets_scrap_apply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:paddingLeft="@dimen/dimen_30dp"
+            android:paddingTop="@dimen/dimen_20dp"
+            android:text="报废申请"
+            android:textColor="@color/gray_666666" />
+
+
+        <TextView
+            android:id="@+id/tv_device_maintenance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:paddingLeft="@dimen/dimen_30dp"
+            android:paddingTop="@dimen/dimen_20dp"
+            android:text="设备维修（部门）"
+            android:textColor="@color/gray_666666"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_repair_apply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:paddingLeft="@dimen/dimen_30dp"
+            android:paddingTop="@dimen/dimen_20dp"
+            android:text="维修申请"
+            android:textColor="@color/gray_666666" />
+
+        <TextView
+            android:id="@+id/tv_device_apply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:paddingLeft="@dimen/dimen_30dp"
+            android:paddingTop="@dimen/dimen_20dp"
+            android:text="设备申请"
+            android:textColor="@color/gray_666666" />
+
+        <TextView
+            android:id="@+id/tv_device_apply_department"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:paddingLeft="@dimen/dimen_30dp"
+            android:paddingTop="@dimen/dimen_20dp"
+            android:text="设备申请（部门）"
+            android:textColor="@color/gray_666666" />
+
+        <TextView
+            android:id="@+id/tv_consumables_appointment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:paddingLeft="@dimen/dimen_30dp"
+            android:paddingTop="@dimen/dimen_20dp"
+            android:text="耗材预约"
+            android:textColor="@color/gray_666666" />
+
+
+        <TextView
+            android:id="@+id/tv_assets_manager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:paddingLeft="@dimen/dimen_30dp"
+            android:paddingTop="@dimen/dimen_20dp"
+            android:text="资产实物管理"
+            android:visibility="gone"
+            android:textColor="@color/gray_666666" />
+
+        <TextView
+            android:id="@+id/tv_assets_mine_approval"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:paddingLeft="@dimen/dimen_30dp"
+            android:paddingTop="@dimen/dimen_20dp"
+            android:text="我的审批"
+            android:textColor="@color/gray_666666" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_exit_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View style="@style/divider_line_no_padding" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dimen_10dp"
+            android:text="退出"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+</RelativeLayout>
