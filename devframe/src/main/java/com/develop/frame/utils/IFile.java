@@ -30,11 +30,13 @@ import java.io.IOException;
 
 public class IFile {
 
+    public static final String FILE_PATH = Environment.getExternalStorageState()+"/DevelopFrame";
+
     /**
      * 图片的二次采样
      */
     public static File compress(File sdFile) {
-        File reusltFIle = new File(AppConfig.LIFE_FILE_PATH, "sizeCompress.jpg");
+        File reusltFIle = new File(FILE_PATH, "sizeCompress.jpg");
         Bitmap bitmap = BitmapFactory.decodeFile(sdFile.getAbsolutePath());
         //设置缩放比
         int radio = 5;
@@ -65,12 +67,12 @@ public class IFile {
      */
     public static void writeStrToFile(String content) {
         try {
-            File dictFile = new File(AppConfig.LIFE_FILE_PATH);
+            File dictFile = new File(FILE_PATH);
             if (dictFile.exists()) {
                 dictFile.delete();
             }
             dictFile.mkdirs();
-            File strFile = new File(AppConfig.LIFE_FILE_PATH, "Dict.txt");
+            File strFile = new File(FILE_PATH, "Dict.txt");
             if (strFile.exists()) {
                 strFile.delete();
             }
@@ -92,7 +94,7 @@ public class IFile {
      */
     public static String readStrFromFile() {
         try {
-            File dictFile = new File(AppConfig.LIFE_FILE_PATH + "/Dict.txt");
+            File dictFile = new File(FILE_PATH + "/Dict.txt");
             if (!dictFile.exists()) {
                 return "";
             }

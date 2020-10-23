@@ -17,7 +17,7 @@ import java.util.List;
 
 public abstract class AppAdapter<T> extends BaseAdapter implements AdapterHandlerOption<T> {
 
-    public List<T> dataList;
+    public List<T> data;
     public Context context;
 
     private int layoutId;
@@ -32,23 +32,23 @@ public abstract class AppAdapter<T> extends BaseAdapter implements AdapterHandle
      */
     public AppAdapter(Context context, List<T> list, int layoutId) {
         this.context = context;
-        this.dataList = list;
+        this.data = list;
         this.layoutId = layoutId;
-        if (list == null)
-            this.dataList = new ArrayList<>();
+        if (null == list)
+            this.data = new ArrayList<>();
         else
-            this.dataList = list;
+            this.data = list;
     }
 
 
     @Override
     public int getCount() {
-        return dataList.size();
+        return data.size();
     }
 
     @Override
     public T getItem(int i) {
-        return this.dataList.get(i);
+        return this.data.get(i);
     }
 
     @Override
@@ -63,7 +63,7 @@ public abstract class AppAdapter<T> extends BaseAdapter implements AdapterHandle
      */
     @Override
     public void setData(List<T> list) {
-        this.dataList = list;
+        this.data = list;
         this.notifyDataSetChanged();
     }
 
@@ -74,7 +74,7 @@ public abstract class AppAdapter<T> extends BaseAdapter implements AdapterHandle
      */
     @Override
     public void addData(List<T> list) {
-        this.dataList.addAll(list);
+        this.data.addAll(list);
         this.notifyDataSetChanged();
     }
 
@@ -83,7 +83,7 @@ public abstract class AppAdapter<T> extends BaseAdapter implements AdapterHandle
      */
     @Override
     public void clearData() {
-        this.dataList.clear();
+        this.data.clear();
         this.notifyDataSetChanged();
     }
 
@@ -94,7 +94,7 @@ public abstract class AppAdapter<T> extends BaseAdapter implements AdapterHandle
      */
     @Override
     public void addOneData(T t) {
-        this.dataList.remove(t);
+        this.data.remove(t);
         this.notifyDataSetChanged();
     }
 
@@ -105,7 +105,7 @@ public abstract class AppAdapter<T> extends BaseAdapter implements AdapterHandle
      */
     @Override
     public void removeData(T t) {
-        this.dataList.remove(t);
+        this.data.remove(t);
         this.notifyDataSetChanged();
     }
 

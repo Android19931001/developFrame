@@ -16,7 +16,7 @@
             android:layout_centerVertical="true"
             android:gravity="center"
             android:text="罗大佑"
-            android:textColor="@color/black_color"
+            android:textColor="@color/gray_484443"
             android:textSize="17sp" />
 
         <ImageView

@@ -11,13 +11,13 @@
         android:id="@+id/ll_select_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="@dimen/dimen_10dp">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:paddingRight="5dp">
+            android:layout_height="50dp"
+            android:background="@color/gray_b1b6bb"
+            android:paddingRight="15dp">
 
             <TextView
                 android:id="@+id/tv_select_title"
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="我是标题"
-                android:textColor="@color/black_color"
+                android:textColor="@color/white"
                 android:textSize="@dimen/dimen_17sp"
                 android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="确定"
-                android:textColor="@color/black_color" />
+                android:textColor="@color/white" />
         </RelativeLayout>
 
         <View style="@style/divider_line_no_padding" />

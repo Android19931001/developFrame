@@ -6,8 +6,12 @@ import java.util.List;
  * Created by wangning on 2018/9/11.
  */
 
-public interface OnSelectItemListener {
-    void singleSelectItem(int position, String item);
+public interface OnSelectItemListener<T> {
 
-    void multiSelectItem(List<Integer> positions,List<String> selectedItems);
+
+    //单选
+    void singleSelectItem(int position, T item);
+
+    //多选
+    void multiSelectItem(List<T> selectedItems);
 }

@@ -15,7 +15,8 @@ import android.widget.TextView;
 
 import com.develop.frame.R;
 import com.develop.frame.base.AppAdapter;
-import com.develop.frame.bridge.OnSelectItemListener;
+import com.develop.frame.bridge.OnChooseItemListener;
+import com.develop.frame.bridge.OnSelectTextListener;
 import com.develop.frame.utils.IScreen;
 import com.develop.frame.utils.IViewHelper;
 
@@ -28,36 +29,46 @@ import java.util.Map;
  * Created by wangning on 2018/9/7.
  */
 
-public class SheetSelectDialog extends Dialog implements View.OnClickListener {
+public class SheetSelectDialog<T> extends Dialog implements View.OnClickListener {
 
+    //选择框对象用于链式
     private static SheetSelectDialog mDialog;
+
+    //上线文
     private Context mContext;
 
+    //显示数据
     private ListView lvSelect;
+
+    //数据适配器
+    private AppAdapter<T> selectAdapter;
+
+    //确定按钮和标题
     private TextView tvSelectSure, tvSelectTitle;
-    private AppAdapter<String> selectAdapter;
 
-    private List<String> contentList = new ArrayList<>();
+    //数据集合，多选时移除数据
 
+    //显示被选中的数据
     private Map<Integer, ImageView> imgMap = new LinkedHashMap<>();
 
-    private boolean isSingleSelect = false;
+    //是否是单选默认是单选
+    private boolean isSingleSelect = true;
 
-    private OnSelectItemListener onSelectItemListener;
+    //选中回调
+    private OnChooseItemListener<T> onChooseItemListener;
 
-    private List<Integer> positions = new ArrayList<>();
-    private List<String> selectedItems = new ArrayList<>();
+
+    //多选时被选中的数据
+    private List<T> selectedItems = new ArrayList<>();
+
 
     public SheetSelectDialog(@NonNull Context context) {
         super(context, R.style.Translucent_NoTitle_ANIMA);
+        mDialog = this;
         this.mContext = context;
         initView();
-        initAdapter();
     }
 
-    public static SheetSelectDialog getDialog(Context context) {
-        return mDialog = new SheetSelectDialog(context);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,28 +86,19 @@ public class SheetSelectDialog extends Dialog implements View.OnClickListener {
         tvSelectTitle = mView.findViewById(R.id.tv_select_title);
         tvSelectSure.setOnClickListener(this);
         setContentView(mView);
+        initAdapter();
     }
 
-    /**
-     * 移除选中
-     */
-    public void removeCheck(String content) {
-        for (int i = 0; i < contentList.size(); i++) {
-            if (contentList.get(i).equals(content)) {
-                imgMap.remove(i);
-                selectedItems.remove(contentList.get(i));
-            }
-        }
-    }
 
     /**
      * 初始化适配器
      */
     private void initAdapter() {
-        selectAdapter = new AppAdapter<String>(mContext, contentList, R.layout.select_adapter_layout) {
+        selectAdapter = new AppAdapter<T>(mContext, new ArrayList<T>(), R.layout.select_adapter_layout) {
             @Override
             public View getChildView(final int position, IViewHelper helper) {
-                final String text = dataList.get(position);
+                final T t = data.get(position);
+                String text = null == t ? "" : (t instanceof OnSelectTextListener) ? ((OnSelectTextListener) t).getSelectText() : (t instanceof String) ? t.toString() : "";
                 helper.setText(R.id.tv_select_text, text);
                 final ImageView ivCheck = helper.getViews(R.id.iv_select_check);
                 if (!isSingleSelect) {
@@ -110,19 +112,9 @@ public class SheetSelectDialog extends Dialog implements View.OnClickListener {
                     @Override
                     public void onClick(View v) {
                         if (!isSingleSelect) {
-                            if (imgMap.containsKey(position)) {
-                                imgMap.get(position).setVisibility(View.INVISIBLE);
-                                imgMap.remove(position);
-                                positions.remove(((Object) position));
-                                selectedItems.remove(contentList.get(position));
-                            } else {
-                                imgMap.put(position, ivCheck);
-                                positions.add(position);
-                                selectedItems.add(contentList.get(position));
-                                imgMap.get(position).setVisibility(View.VISIBLE);
-                            }
+                            handleMultiSelect(data,position,ivCheck);
                         } else {
-                            onSelectItemListener.singleSelectItem(position, text);
+                            onChooseItemListener.singleSelectItem(position, t);
                             mDialog.dismiss();
                         }
                     }
@@ -133,13 +125,29 @@ public class SheetSelectDialog extends Dialog implements View.OnClickListener {
         lvSelect.setAdapter(selectAdapter);
     }
 
+
+    /**
+     * 多选时处理选中标志
+     */
+    private void handleMultiSelect(List<T> data ,int position,ImageView ivCheck) {
+        if (imgMap.containsKey(position)) {
+            imgMap.get(position).setVisibility(View.INVISIBLE);
+            imgMap.remove(position);
+            selectedItems.remove(data.get(position));
+        } else {
+            imgMap.put(position, ivCheck);
+            selectedItems.add(data.get(position));
+            imgMap.get(position).setVisibility(View.VISIBLE);
+        }
+    }
+
     /**
      * 设置数据源
      *
      * @param list
      * @return
      */
-    public SheetSelectDialog setSelectList(List<String> list) {
+    public SheetSelectDialog<T> setSelectList(List<T> list) {
         selectAdapter.addData(list);
         return mDialog;
     }
@@ -150,7 +158,7 @@ public class SheetSelectDialog extends Dialog implements View.OnClickListener {
      * @param title
      * @return
      */
-    public SheetSelectDialog setSelectTitle(String title) {
+    public SheetSelectDialog<T> setSelectTitle(String title) {
         tvSelectTitle.setText(title);
         return mDialog;
     }
@@ -158,11 +166,11 @@ public class SheetSelectDialog extends Dialog implements View.OnClickListener {
     /**
      * 设置回调
      *
-     * @param onSelectListener
+     * @param onChooseItemListener
      * @return
      */
-    public SheetSelectDialog setOnSelectListener(OnSelectItemListener onSelectListener) {
-        this.onSelectItemListener = onSelectListener;
+    public SheetSelectDialog<T> setOnSelectListener(OnChooseItemListener<T> onChooseItemListener) {
+        this.onChooseItemListener = onChooseItemListener;
         return mDialog;
 
     }
@@ -173,7 +181,7 @@ public class SheetSelectDialog extends Dialog implements View.OnClickListener {
      * @param isSingleSelect
      * @return
      */
-    public SheetSelectDialog isSingleSelect(boolean isSingleSelect) {
+    public SheetSelectDialog<T> isSingleSelect(boolean isSingleSelect) {
         this.isSingleSelect = isSingleSelect;
         if (this.isSingleSelect) {
             tvSelectSure.setVisibility(View.INVISIBLE);
@@ -182,7 +190,7 @@ public class SheetSelectDialog extends Dialog implements View.OnClickListener {
     }
 
     /**
-     * 使出话dialog
+     * 初始化dialog
      */
     private void initDialog() {
         this.setCanceledOnTouchOutside(true);
@@ -203,8 +211,8 @@ public class SheetSelectDialog extends Dialog implements View.OnClickListener {
         int id = v.getId();
         if (R.id.tv_select_sure == id) {
             if (!isSingleSelect) {
-                if (onSelectItemListener != null) {
-                    onSelectItemListener.multiSelectItem(positions,selectedItems);
+                if (onChooseItemListener != null) {
+                    onChooseItemListener.multiSelectItem(selectedItems);
                     mDialog.dismiss();
                 }
             }
