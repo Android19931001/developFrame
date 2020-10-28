@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.PopupWindow;
 
 import com.develop.frame.R;
-import com.develop.frame.bridge.OnWindowItemClickListener;
 
 import java.lang.reflect.Field;
 
@@ -29,7 +28,6 @@ public class SlidePopWindow implements View.OnClickListener {
 
     private int popWidth, popHeight;
 
-    private static OnWindowItemClickListener onWindowItemClickListener;
 
     private String userName, account;
 
@@ -57,10 +55,6 @@ public class SlidePopWindow implements View.OnClickListener {
         popWindow = null;
     }
 
-    public SlidePopWindow initListener(OnWindowItemClickListener onWindowItemClickListener) {
-        this.onWindowItemClickListener = onWindowItemClickListener;
-        return popWindow;
-    }
 
     public SlidePopWindow init(Activity activity) {
         this.activity = activity;

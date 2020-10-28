@@ -17,7 +17,7 @@ public class ILoading {
      */
     private static void init(Context context) {
         if (null != loadingDailog) {
-            loadingDailog = null;
+            return;
         }
         loadingDailog = new LoadingDailog.Builder(context)
                 .setMessage("加载中...")
@@ -33,7 +33,7 @@ public class ILoading {
      */
     private static void init(Context context, String text) {
         if (null != loadingDailog) {
-            loadingDailog = null;
+            return;
         }
         loadingDailog = new LoadingDailog.Builder(context)
                 .setMessage(text + "...")
@@ -42,11 +42,11 @@ public class ILoading {
                 .create();
     }
 
-
     /**
      * show this dialog
      */
     public static void open(Context context) {
+        init(context);
         if (!isLoading()) {
             loadingDailog.show();
         }
@@ -75,7 +75,7 @@ public class ILoading {
     }
 
     /**
-     * judging this dialog is loading
+     * judge this dialog is loading
      *
      * @return
      */

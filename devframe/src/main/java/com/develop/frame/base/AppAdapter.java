@@ -43,12 +43,12 @@ public abstract class AppAdapter<T> extends BaseAdapter implements AdapterHandle
 
     @Override
     public int getCount() {
-        return data.size();
+        return null == data ? 0 : data.size();
     }
 
     @Override
     public T getItem(int i) {
-        return this.data.get(i);
+        return null == this.data ? null : this.data.get(i);
     }
 
     @Override

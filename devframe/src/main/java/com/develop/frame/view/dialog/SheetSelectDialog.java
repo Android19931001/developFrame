@@ -18,6 +18,7 @@ import com.develop.frame.base.AppAdapter;
 import com.develop.frame.bridge.OnChooseItemListener;
 import com.develop.frame.bridge.OnSelectTextListener;
 import com.develop.frame.utils.IScreen;
+import com.develop.frame.utils.IToast;
 import com.develop.frame.utils.IViewHelper;
 
 import java.util.ArrayList;
@@ -73,7 +74,6 @@ public class SheetSelectDialog<T> extends Dialog implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initDialog();
     }
 
     /**
@@ -112,7 +112,7 @@ public class SheetSelectDialog<T> extends Dialog implements View.OnClickListener
                     @Override
                     public void onClick(View v) {
                         if (!isSingleSelect) {
-                            handleMultiSelect(data,position,ivCheck);
+                            handleMultiSelect(data, position, ivCheck);
                         } else {
                             onChooseItemListener.singleSelectItem(position, t);
                             mDialog.dismiss();
@@ -129,7 +129,7 @@ public class SheetSelectDialog<T> extends Dialog implements View.OnClickListener
     /**
      * 多选时处理选中标志
      */
-    private void handleMultiSelect(List<T> data ,int position,ImageView ivCheck) {
+    private void handleMultiSelect(List<T> data, int position, ImageView ivCheck) {
         if (imgMap.containsKey(position)) {
             imgMap.get(position).setVisibility(View.INVISIBLE);
             imgMap.remove(position);
@@ -148,7 +148,18 @@ public class SheetSelectDialog<T> extends Dialog implements View.OnClickListener
      * @return
      */
     public SheetSelectDialog<T> setSelectList(List<T> list) {
+        if (null == list || list.size() == 0) {
+            IToast.show(mContext, "请输入数据源！");
+            return mDialog;
+        }
         selectAdapter.addData(list);
+        int height = 0;
+        if (list.size() >= 4) {
+            height = 4 * (IScreen.dip2px(mContext, 45f)) + IScreen.dip2px(mContext, 50f);
+        } else {
+            height = list.size() * (IScreen.dip2px(mContext, 45f)) + IScreen.dip2px(mContext, 50f);
+        }
+        initDialog(height);
         return mDialog;
     }
 
@@ -192,13 +203,13 @@ public class SheetSelectDialog<T> extends Dialog implements View.OnClickListener
     /**
      * 初始化dialog
      */
-    private void initDialog() {
+    private void initDialog(int height) {
         this.setCanceledOnTouchOutside(true);
         Window window = this.getWindow();
         window.setGravity(Gravity.BOTTOM);
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.windowAnimations = R.style.translucent_animation;
-        window.setLayout(IScreen.width(mContext), IScreen.height(mContext) * 3 / 8);
+        window.setLayout(IScreen.width(mContext), height);
     }
 
     /**
@@ -217,5 +228,16 @@ public class SheetSelectDialog<T> extends Dialog implements View.OnClickListener
                 }
             }
         }
+    }
+
+    /**
+     * 弹出对话框
+     */
+    public void showMe() {
+        if (null == selectAdapter || selectAdapter.getCount() == 0) {
+            IToast.show(mContext, "请传入数据源！");
+            return;
+        }
+        mDialog.show();
     }
 }

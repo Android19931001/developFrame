@@ -46,7 +46,7 @@ public class IViewHelper {
 
     public static IViewHelper get(Context context, View convertView,
                                   ViewGroup parent, int layoutId) {
-        if (convertView == null) {
+        if (null == convertView) {
             return new IViewHelper(context, parent, layoutId);
         }
         return (IViewHelper) convertView.getTag();

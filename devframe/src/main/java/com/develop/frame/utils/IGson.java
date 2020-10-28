@@ -27,7 +27,7 @@ public class IGson<T> {
             if (null == iGson) iGson = new Gson();
             return iGson.fromJson(json, classz);
         } catch (Exception e) {
-            ILog.e("something wrong has happend " + e.getMessage());
+            ILog.e("something wrong was happened " + e.getMessage());
         }
         return null;
     }
@@ -43,7 +43,7 @@ public class IGson<T> {
             if (null == iGson) iGson = new Gson();
             return iGson.fromJson(json, String[].class);
         } catch (Exception e) {
-            ILog.e("something wrong has happend " + e.getMessage());
+            ILog.e("something wrong was happened " + e.getMessage());
         }
         return null;
     }
@@ -62,7 +62,7 @@ public class IGson<T> {
             return iGson.fromJson(json, new TypeToken<List<T>>() {
             }.getType());
         } catch (Exception e) {
-            ILog.e("something wrong has happend " + e.getMessage());
+            ILog.e("something wrong was happened " + e.getMessage());
         }
         return null;
     }
@@ -78,7 +78,7 @@ public class IGson<T> {
             if (null == iGson) iGson = new Gson();
             return iGson.toJson(object);
         } catch (Exception e) {
-            ILog.e("something wrong has happend " + e.getMessage());
+            ILog.e("something wrong was happened " + e.getMessage());
         }
         return null;
     }

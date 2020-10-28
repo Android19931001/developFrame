@@ -36,10 +36,10 @@ public class IApi {
      * @param phone
      */
     public static void call(Context context, String phone) {
-        if (!IValidate.checkIsPhone(phone)) {
-            Toast.makeText(context, "号码错误", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if (!IValidate.checkIsPhone(phone)) {
+//            Toast.makeText(context, "号码错误", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);

@@ -21,18 +21,18 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerHe
 
     public Context context;
 
-    public List<T> dataList;
+    public List<T> datas;
 
     private int layoutId;
 
-    public RecyclerAdapter(Context context, List<T> dataList, int layoutId) {
+    public RecyclerAdapter(Context context, List<T> datas, int layoutId) {
         this.context = context;
         this.layoutId = layoutId;
-        this.dataList = dataList;
-        if (dataList == null)
-            this.dataList = new ArrayList<>();
+        this.datas = datas;
+        if (datas == null)
+            this.datas = new ArrayList<>();
         else
-            this.dataList = dataList;
+            this.datas = datas;
     }
 
     /**
@@ -42,7 +42,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerHe
      */
     @Override
     public void setData(List<T> list) {
-        this.dataList = list;
+        this.datas = list;
         this.notifyDataSetChanged();
     }
 
@@ -51,18 +51,18 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerHe
      */
     @Override
     public void clearData() {
-        this.dataList.clear();
+        this.datas.clear();
         this.notifyDataSetChanged();
     }
 
     /**
-     * 想dataList中添加数据
+     * 想datas中添加数据
      *
      * @param list
      */
     @Override
     public void addData(List<T> list) {
-        this.dataList.addAll(list);
+        this.datas.addAll(list);
         this.notifyDataSetChanged();
     }
 
@@ -73,7 +73,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerHe
      */
     @Override
     public void removeData(T t) {
-        this.dataList.remove(t);
+        this.datas.remove(t);
         this.notifyDataSetChanged();
     }
 
@@ -84,7 +84,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerHe
      */
     @Override
     public void addOneData(T t) {
-        this.dataList.add(t);
+        this.datas.add(t);
         this.notifyDataSetChanged();
     }
 
@@ -108,7 +108,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerHe
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return datas.size();
     }
 
     /**

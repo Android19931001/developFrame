@@ -40,10 +40,8 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
         immersionBar = ImmersionBar.with(this);
 
         immersionBar
-                .statusBarColor(R.color.gray_484443)
+                .statusBarColor(R.color.transparent)
                 .navigationBarColor(R.color.black_color)
-//                .flymeOSStatusBarFontColor(R.color.black_color)
-//                .statusBarDarkFont(true)
                 .fitsSystemWindows(true)
                 .init();
 

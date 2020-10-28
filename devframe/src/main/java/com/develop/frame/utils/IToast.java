@@ -1,5 +1,6 @@
 package com.develop.frame.utils;
 
+import android.content.Context;
 import android.widget.Toast;
 
 import com.develop.frame.base.BaseAppActivity;
@@ -26,5 +27,16 @@ public class IToast {
      */
     public static void showLong(String msg) {
         Toast.makeText(BaseAppActivity.mActivity, msg, Toast.LENGTH_LONG).show();
+    }
+
+
+    /**
+     * 传入上下文弹出吐司
+     *
+     * @param context
+     * @param msg
+     */
+    public static void show(Context context, String msg) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 }

@@ -6,8 +6,6 @@ package com.develop.frame.bridge;
 
 public interface FragmentPresenter {
 
-    void initView();
-
-    void initData();
+   void init();
 
 }

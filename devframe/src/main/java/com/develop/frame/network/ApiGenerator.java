@@ -93,7 +93,6 @@ public class ApiGenerator {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create()).build();
-
     }
 
 
