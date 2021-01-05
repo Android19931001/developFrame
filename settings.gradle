@@ -1,1 +1,1 @@
-include ':app', ':devframe'
+include ':devframe'
