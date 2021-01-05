@@ -16,5 +16,5 @@ public interface AdapterHandlerOption<T> {
 
     void removeData(T t);
 
-    void addOneData(T t);
+    void addData(T t);
 }

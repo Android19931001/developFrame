@@ -15,12 +15,10 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -30,7 +28,49 @@ import java.io.IOException;
 
 public class IFile {
 
-    public static final String FILE_PATH = Environment.getExternalStorageState()+"/DevelopFrame";
+    public static final String FILE_PATH = Environment.getExternalStorageState() + "/DevelopFrame";
+
+    /**
+     * Call this method when you want to create file folder and file
+     *
+     * @param path should contain fileName,for example:/root/data/dict.txt
+     */
+    public static void createFile(String path) {
+        if (IString.isEmpty(path)) {
+            IToast.show("文件路径为空");
+            return;
+        }
+        try {
+            String filePath = path.substring(0, path.lastIndexOf(File.separator));
+            String fileName = path.substring(path.lastIndexOf(File.separator) + 1);
+            File fileDir = new File(filePath);
+            File file = new File(filePath, fileName);
+            if (!fileDir.exists()) {
+                fileDir.mkdirs();
+            }
+            file.createNewFile();
+        } catch (Exception e) {
+            ILog.e("创建文件异常" + IGson.iJsonStr(e));
+            IToast.show("创建文件异常");
+        }
+
+    }
+
+    /**
+     * Call this method when you only want to create file folder
+     *
+     * @param path should not contain fileName,for example:/foot/data
+     */
+    public static void mkDir(String path) {
+        if (IString.isEmpty(path)) {
+            IToast.show("文件路径为空");
+            return;
+        }
+        File fileDir = new File(path);
+        if (!fileDir.exists()) {
+            fileDir.mkdirs();
+        }
+    }
 
     /**
      * 图片的二次采样
@@ -87,31 +127,6 @@ public class IFile {
         }
     }
 
-    /**
-     * 从文件中读处字典数据
-     *
-     * @return
-     */
-    public static String readStrFromFile() {
-        try {
-            File dictFile = new File(FILE_PATH + "/Dict.txt");
-            if (!dictFile.exists()) {
-                return "";
-            }
-            FileReader fr = new FileReader(dictFile);
-            BufferedReader bReader = new BufferedReader(fr);//new一个BufferedReader对象，将文件内容读取到缓存
-            StringBuilder sb = new StringBuilder();
-            String strBu;
-            while ((strBu = bReader.readLine()) != null) {
-                sb.append(strBu);
-            }
-            bReader.close();
-            return sb.toString();
-        } catch (Exception exception) {
-            exception.printStackTrace();
-        }
-        return "";
-    }
 
     //复杂版处理  (适配多种API)
     public static String getRealPathFromUri(Context context, Uri uri) {

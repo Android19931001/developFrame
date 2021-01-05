@@ -24,7 +24,7 @@
             android:name=".activity.IShowPicActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

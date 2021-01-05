@@ -84,7 +84,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
      * @param intent
      * @param requestCode
      */
-    public void goActivity(Intent intent, int requestCode) {
+    public void jump(Intent intent, int requestCode) {
         startActivityForResult(intent, requestCode);
     }
 
@@ -96,7 +96,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
      * @param isAnim
      */
 
-    public void goActivity(Intent intent, boolean isAnim) {
+    public void jump(Intent intent, boolean isAnim) {
         goActivity(intent);
         if (isAnim)
             overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
@@ -110,7 +110,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
      * @param isAnim
      */
 
-    public void goActivitys(Intent intent, boolean isAnim) {
+    public void jumpActivity(Intent intent, boolean isAnim) {
         goActivity(intent);
         if (isAnim)
             overridePendingTransition(R.anim.play_in, 0);

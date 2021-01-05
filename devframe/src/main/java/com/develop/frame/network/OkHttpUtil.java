@@ -81,7 +81,7 @@ public class OkHttpUtil {
      * @return
      */
 
-    private RequestBody getImgBody(Map map) {
+    private RequestBody getImgBody(Map map, String fileKey) {
         MultipartBody.Builder builder = new MultipartBody.Builder();
         builder.setType(MultipartBody.FORM);
         Iterator it = map.keySet().iterator();
@@ -90,7 +90,7 @@ public class OkHttpUtil {
             Object object = map.get(key);
             if (object instanceof File) {
                 File file = ((File) map.get(key));
-                builder.addFormDataPart("img", file.getName(),
+                builder.addFormDataPart(fileKey, file.getName(),
                         RequestBody.create(MediaType.parse("image/png"), file));
             } else {
                 builder.addFormDataPart(key, map.get(key).toString());
@@ -262,13 +262,14 @@ public class OkHttpUtil {
      * @param requestCode
      * @param url
      * @param map
+     * @param fileKey     上传文件时与后台指定的文件key值
      * @param callBack
      */
-    public void submitFile(final int requestCode, String url, Map map, final OkCallBack callBack) {
+    public void submitFile(final int requestCode, String url, Map map, String fileKey, final OkCallBack callBack) {
         try {
             mClient.newCall(mRequestBuild
                     .url(url)
-                    .post(getImgBody(map))
+                    .post(getImgBody(map, fileKey))
                     .build()).enqueue(new Callback() {
                 @Override
                 public void onFailure(okhttp3.Call call, IOException e) {

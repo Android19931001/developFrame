@@ -23,8 +23,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/l_icon_avator" />
+                android:layout_gravity="center_vertical" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

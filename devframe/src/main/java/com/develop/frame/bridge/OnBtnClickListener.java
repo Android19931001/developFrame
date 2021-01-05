@@ -7,5 +7,6 @@ import com.develop.frame.view.dialog.CommonDialog;
  */
 
 public interface OnBtnClickListener {
+    
     void onClick(CommonDialog dialog);
 }

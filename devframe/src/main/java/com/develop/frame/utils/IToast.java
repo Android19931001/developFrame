@@ -17,7 +17,12 @@ public class IToast {
      * @param msg
      */
     public static void show(final String msg) {
-        Toast.makeText(BaseAppActivity.mActivity, msg, Toast.LENGTH_SHORT).show();
+        try {
+            Toast.makeText(BaseAppActivity.mActivity, msg, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            ILog.e("吐司发生异常" + IGson.iJsonStr(e));
+        }
+
     }
 
     /**
@@ -26,7 +31,12 @@ public class IToast {
      * @param msg
      */
     public static void showLong(String msg) {
-        Toast.makeText(BaseAppActivity.mActivity, msg, Toast.LENGTH_LONG).show();
+        try {
+            Toast.makeText(BaseAppActivity.mActivity, msg, Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            ILog.e("吐司发生异常" + IGson.iJsonStr(e));
+        }
+
     }
 
 
@@ -37,6 +47,10 @@ public class IToast {
      * @param msg
      */
     public static void show(Context context, String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        try {
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            ILog.e("吐司发生异常" + IGson.iJsonStr(e));
+        }
     }
 }

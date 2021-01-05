@@ -93,7 +93,7 @@ public abstract class AppAdapter<T> extends BaseAdapter implements AdapterHandle
      * @param t
      */
     @Override
-    public void addOneData(T t) {
+    public void addData(T t) {
         this.data.remove(t);
         this.notifyDataSetChanged();
     }

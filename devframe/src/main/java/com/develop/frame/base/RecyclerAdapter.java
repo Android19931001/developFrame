@@ -83,7 +83,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerHe
      * @param t
      */
     @Override
-    public void addOneData(T t) {
+    public void addData(T t) {
         this.datas.add(t);
         this.notifyDataSetChanged();
     }
