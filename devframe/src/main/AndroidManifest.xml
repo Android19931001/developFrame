@@ -11,11 +11,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
         <activity
-            android:name=".activity.WebViewActivity"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
             android:name=".activity.WebkitActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"

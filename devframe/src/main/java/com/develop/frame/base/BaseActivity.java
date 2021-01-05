@@ -17,6 +17,7 @@ import android.widget.EditText;
 import com.develop.frame.R;
 import com.develop.frame.bridge.ActivityPresenter;
 import com.develop.frame.utils.ILoading;
+import com.develop.frame.utils.IPhone;
 import com.gyf.immersionbar.ImmersionBar;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 
@@ -36,19 +37,26 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         immersionBar = ImmersionBar.with(this);
-
-        immersionBar
-                .statusBarColor(R.color.transparent)
-                .navigationBarColor(R.color.black_color)
-                .fitsSystemWindows(true)
-                .init();
-
+        initUInterface();
         mContext = getActivity();
-
         fm = getSupportFragmentManager();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+    }
+
+    /**
+     * 初始化UI界面状态栏导航栏
+     */
+    private void initUInterface() {
+        immersionBar
+                .navigationBarColor(R.color.black_color)
+                .fitsSystemWindows(true);
+        if ("Meizu".equals(IPhone.iBrand())) {
+            immersionBar.flymeOSStatusBarFontColor(R.color.black_30p);
+        } else {
+            immersionBar.statusBarColor(R.color.black_30p);
+        }
+        immersionBar.init();
     }
 
 

@@ -28,7 +28,7 @@ public class IShowPicActivity extends BaseActivity {
     private static final String IMAGE_URLS = "IMAGE_URLS";
     private static final String IMAGE_POSITION = "IMAGE_POSITION";
 
-    public static void showImae(Context context, ArrayList<String> list, int position) {
+    public static void showImage(Context context, ArrayList<String> list, int position) {
         if (null == list || list.size() == 0) {
             Toast.makeText(context, "图片集合为空！", Toast.LENGTH_SHORT).show();
             return;

@@ -3,7 +3,7 @@ package com.develop.frame.utils;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.develop.frame.BuildConfig;
+import com.develop.frame.base.BaseAppActivity;
 
 import java.util.Iterator;
 import java.util.List;
@@ -15,11 +15,22 @@ import java.util.Map;
 
 public class ILog {
 
-    private final static boolean isLog = BuildConfig.DEBUG;
 
     private static String TAG = "FRAME_TAG";
 
     private static StringBuilder builder = null;
+
+    /**
+     * 是否开启了日志打印
+     *
+     * @return
+     */
+    private static boolean isLog() {
+        if (null != BaseAppActivity.mActivity) {
+            return ((BaseAppActivity) BaseAppActivity.mActivity).IS_OPEN_LOG;
+        }
+        return false;
+    }
 
     /**
      * 错误级别的
@@ -27,7 +38,7 @@ public class ILog {
      * @param msg
      */
     public static void e(Object msg) {
-        if (isLog) {
+        if (isLog()) {
             Log.e(TAG, msg.toString());
         }
     }
@@ -38,7 +49,7 @@ public class ILog {
      * @param msg
      */
     public static void i(String msg) {
-        if (isLog) {
+        if (isLog()) {
             Log.i(TAG, msg);
         }
     }
@@ -49,7 +60,7 @@ public class ILog {
      * @param msg
      */
     public static void w(String msg) {
-        if (isLog) {
+        if (isLog()) {
             Log.w(TAG, msg);
         }
     }
@@ -60,7 +71,7 @@ public class ILog {
      * @param msg
      */
     public static void d(String msg) {
-        if (isLog) {
+        if (isLog()) {
             Log.d(TAG, msg);
         }
     }
@@ -72,7 +83,7 @@ public class ILog {
      * @param map
      */
     public static void map(Map map) {
-        if (isLog && map != null) {
+        if (isLog() && map != null) {
             if (map.size() <= 0) {
                 e("Map中没有添加任何的值");
                 return;
@@ -90,7 +101,7 @@ public class ILog {
      * @param map
      */
     public static void map(String url, Map map) {
-        if (isLog && map != null) {
+        if (isLog() && map != null) {
             if (map.size() <= 0) {
                 e("请求的路径：" + url + "\nMap中没有添加任何的值");
                 return;
@@ -108,7 +119,7 @@ public class ILog {
      * @param list
      */
     public static void list(List list) {
-        if (isLog && list != null) {
+        if (isLog() && list != null) {
             if (list.size() <= 0) {
                 e("List集合中没有添加任何的值");
                 return;
@@ -148,7 +159,7 @@ public class ILog {
      * @param json
      */
     public static void logJson(String json) {
-        if (isLog && !TextUtils.isEmpty(json)) {
+        if (isLog() && !TextUtils.isEmpty(json)) {
             e(handleJson(json));
         }
     }

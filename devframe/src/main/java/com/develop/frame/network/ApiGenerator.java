@@ -2,7 +2,7 @@ package com.develop.frame.network;
 
 import android.text.TextUtils;
 
-import com.develop.frame.BuildConfig;
+import com.develop.frame.base.BaseAppActivity;
 
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
@@ -63,7 +63,7 @@ public class ApiGenerator {
             }
         };
         Interceptor loggingInterceptor = new HttpLoggingInterceptor().setLevel(
-                BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY
+                (null == BaseAppActivity.mActivity ? true : ((BaseAppActivity) BaseAppActivity.mActivity).IS_OPEN_LOG) ? HttpLoggingInterceptor.Level.BODY
                         : HttpLoggingInterceptor.Level.NONE);
         Dispatcher dispatcher = new Dispatcher(Executors.newScheduledThreadPool(3));
         builder =

@@ -13,6 +13,7 @@ public class BaseAppActivity extends Application {
 
     public static Context mActivity;
 
+    public boolean IS_OPEN_LOG = true;
 
     @Override
     public void onCreate() {
@@ -23,10 +24,18 @@ public class BaseAppActivity extends Application {
 
     /**
      * 初始化retrofit
+     *
      * @param url
      */
     public void initNetWork(String url) {
         ApiGenerator.init(url);
+    }
+
+    /**
+     * 是否开启日志打印
+     */
+    public void isOpenLog(boolean isOpenLog) {
+        this.IS_OPEN_LOG = isOpenLog;
     }
 
 }
