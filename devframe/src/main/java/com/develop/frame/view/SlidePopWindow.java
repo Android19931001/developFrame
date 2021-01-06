@@ -48,13 +48,6 @@ public class SlidePopWindow implements View.OnClickListener {
         return popWindow;
     }
 
-    /**
-     * 至于null;
-     */
-    public static void setNullValue() {
-        popWindow = null;
-    }
-
 
     public SlidePopWindow init(Activity activity) {
         this.activity = activity;

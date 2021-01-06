@@ -1,6 +1,5 @@
 package com.develop.frame.base;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -27,7 +26,6 @@ import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 
 public abstract class BaseActivity extends FragmentActivity implements ActivityPresenter {
 
-    public Activity mContext;
 
     public FragmentManager fm;
 
@@ -39,7 +37,6 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
         super.onCreate(savedInstanceState);
         immersionBar = ImmersionBar.with(this);
         initUInterface();
-        mContext = getActivity();
         fm = getSupportFragmentManager();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
@@ -82,7 +79,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
      * @param intent
      */
 
-    public void goActivity(Intent intent) {
+    public void jump(Intent intent) {
         startActivity(intent);
     }
 
@@ -98,14 +95,14 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
 
 
     /**
-     * 带有过场动画的activity跳转
+     * 带有过场动画的activity跳转左近右出
      *
      * @param intent
      * @param isAnim
      */
 
     public void jump(Intent intent, boolean isAnim) {
-        goActivity(intent);
+        jump(intent);
         if (isAnim)
             overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
     }
@@ -119,7 +116,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
      */
 
     public void jumpActivity(Intent intent, boolean isAnim) {
-        goActivity(intent);
+        jump(intent);
         if (isAnim)
             overridePendingTransition(R.anim.play_in, 0);
     }
@@ -152,7 +149,13 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
         return super.dispatchTouchEvent(ev);
     }
 
-
+    /**
+     * 判断点击的区域是否是输入框的以外的部分
+     *
+     * @param view
+     * @param event
+     * @return
+     */
     public boolean isShouldHideInput(View view, MotionEvent event) {
         if (null != view && (view instanceof EditText)) {
             int[] pos = {0, 0};

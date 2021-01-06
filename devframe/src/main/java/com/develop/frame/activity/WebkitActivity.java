@@ -63,7 +63,7 @@ public class WebkitActivity extends BaseActivity {
 
 
     /**
-     * 配置WebView
+     * init webview settings
      */
     private void initWebView() {
         WebSettings settings = webView.getSettings();
@@ -82,7 +82,7 @@ public class WebkitActivity extends BaseActivity {
     }
 
     /**
-     * 适配网页
+     * adapter web
      */
     private void adapterWebView(WebSettings settings) {
         DisplayMetrics metrics = new DisplayMetrics();
@@ -100,7 +100,7 @@ public class WebkitActivity extends BaseActivity {
 
 
     /**
-     * 使用自己的浏览器浏览不使用手机的第三方加载网页
+     * Using local browser to load web
      */
     private WebChromeClient webChromeClient = new WebChromeClient() {
         @Override
@@ -122,7 +122,7 @@ public class WebkitActivity extends BaseActivity {
     };
 
     /**
-     * webView端
+     * webViewClient's callback
      */
     private WebViewClient webViewClient = new WebViewClient() {
         @Override
@@ -157,7 +157,7 @@ public class WebkitActivity extends BaseActivity {
     };
 
     /**
-     * 控制内存泄漏
+     * control memory leak
      */
     @Override
     protected void onDestroy() {

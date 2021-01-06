@@ -47,7 +47,7 @@ public class IApi {
      * @param activity
      * @param packAgeName
      */
-    public static void goToMarket(Activity activity, String packAgeName) {
+    public static void jumpToMarket(Activity activity, String packAgeName) {
         try {
             activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packAgeName)));
         } catch (ActivityNotFoundException e) {

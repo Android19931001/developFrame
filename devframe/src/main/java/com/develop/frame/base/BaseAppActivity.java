@@ -23,16 +23,20 @@ public class BaseAppActivity extends Application {
 
 
     /**
-     * 初始化retrofit
+     * Init retrofit settings
      *
-     * @param url
+     * @param url Your project's request url
      */
     public void initNetWork(String url) {
         ApiGenerator.init(url);
     }
 
+
     /**
-     * 是否开启日志打印
+     * Is need open log print
+     *
+     * @param isOpenLog It suggest user your project's "BuildConfig.Debug" as param,it can
+     *                  distinguish with debug and release model
      */
     public void isOpenLog(boolean isOpenLog) {
         this.IS_OPEN_LOG = isOpenLog;

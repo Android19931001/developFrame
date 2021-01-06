@@ -95,12 +95,10 @@ public class IDate {
     /**
      * 格式化UTC时间格式
      *
-     * @param inType
-     * 根据当前输入的日期格式决定，
-     * 如：输入日期：2020-10-19T16:23:32，则inType为yyyy-MM-dd'T'HH:mm:ss;
-     * 如：输入日期：2020-10-19T16:23:32.323Z，则inType为yyyy-MM-dd'T'HH:mm:ss.SSS'Z';
-     * @param outType
-     * 想要返回的日期格式
+     * @param inType  根据当前输入的日期格式决定，
+     *                如：输入日期：2020-10-19T16:23:32，则inType为yyyy-MM-dd'T'HH:mm:ss;
+     *                如：输入日期：2020-10-19T16:23:32.323Z，则inType为yyyy-MM-dd'T'HH:mm:ss.SSS'Z';
+     * @param outType 想要返回的日期格式
      * @param date
      * @return
      */
@@ -117,6 +115,14 @@ public class IDate {
         }
     }
 
+    /**
+     * 格式化日期格式
+     *
+     * @param inType  需要格式化的日期的类型
+     * @param outType 格式化之后的类型
+     * @param date    需要格式化的日期
+     * @return
+     */
     public static String format(String inType, String outType, String date) {
         SimpleDateFormat sdf = new SimpleDateFormat(inType);
         try {

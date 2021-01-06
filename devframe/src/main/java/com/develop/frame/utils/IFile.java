@@ -36,11 +36,11 @@ public class IFile {
      * @param path should contain fileName,for example:/root/data/dict.txt
      */
     public static void createFile(String path) {
-        if (IString.isEmpty(path)) {
-            IToast.show("文件路径为空");
-            return;
-        }
         try {
+            if (IString.isEmpty(path)) {
+                IToast.show("文件路径为空");
+                return;
+            }
             String filePath = path.substring(0, path.lastIndexOf(File.separator));
             String fileName = path.substring(path.lastIndexOf(File.separator) + 1);
             File fileDir = new File(filePath);
@@ -51,7 +51,7 @@ public class IFile {
             file.createNewFile();
         } catch (Exception e) {
             ILog.e("创建文件异常" + IGson.iJsonStr(e));
-            IToast.show("创建文件异常");
+            IToast.show("创建文件失败");
         }
 
     }
@@ -62,24 +62,32 @@ public class IFile {
      * @param path should not contain fileName,for example:/foot/data
      */
     public static void mkDir(String path) {
-        if (IString.isEmpty(path)) {
-            IToast.show("文件路径为空");
-            return;
-        }
-        File fileDir = new File(path);
-        if (!fileDir.exists()) {
-            fileDir.mkdirs();
+        try {
+            if (IString.isEmpty(path)) {
+                IToast.show("文件路径为空");
+                return;
+            }
+            File fileDir = new File(path);
+            if (!fileDir.exists()) {
+                fileDir.mkdirs();
+            }
+        } catch (Exception e) {
+            ILog.e("创建文件路径异常" + IGson.iJsonStr(e));
+            IToast.show("创建文件路径失败");
         }
     }
 
     /**
      * 图片的二次采样
+     *
+     * @param sdFile 图片文件
+     * @param radio  图片的压缩比例，比例越大压缩后的图片越小，反之则越大
+     * @return
      */
-    public static File compress(File sdFile) {
+    public static File compress(File sdFile, int radio) {
         File reusltFIle = new File(FILE_PATH, "sizeCompress.jpg");
         Bitmap bitmap = BitmapFactory.decodeFile(sdFile.getAbsolutePath());
         //设置缩放比
-        int radio = 5;
         Bitmap result = Bitmap.createBitmap(bitmap.getWidth() / radio, bitmap.getHeight() / radio, Bitmap.Config.RGB_565);
         Canvas canvas = new Canvas(result);
         RectF rectF = new RectF(0, 0, bitmap.getWidth() / radio, bitmap.getHeight() / radio);
@@ -128,7 +136,13 @@ public class IFile {
     }
 
 
-    //复杂版处理  (适配多种API)
+    /**
+     * 复杂版处理  (适配多种API) 从Uri中获取路径
+     *
+     * @param context
+     * @param uri
+     * @return
+     */
     public static String getRealPathFromUri(Context context, Uri uri) {
         int sdkVersion = Build.VERSION.SDK_INT;
         if (sdkVersion < 11) return getRealPathFromUri_BelowApi11(context, uri);

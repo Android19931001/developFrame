@@ -96,7 +96,7 @@ public class IShowPicActivity extends BaseActivity {
     }
 
     /**
-     * 图片的viewpage适配器
+     * Images's adapter for viewPage
      */
     private class ImagePageAdapter extends PagerAdapter {
 
