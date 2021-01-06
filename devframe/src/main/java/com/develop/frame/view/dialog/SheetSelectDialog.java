@@ -154,8 +154,8 @@ public class SheetSelectDialog<T> extends Dialog implements View.OnClickListener
         }
         selectAdapter.addData(list);
         int height = 0;
-        if (list.size() >= 4) {
-            height = 4 * (IScreen.dip2px(mContext, 45f)) + IScreen.dip2px(mContext, 50f);
+        if (list.size() >= 5) {
+            height = 5 * (IScreen.dip2px(mContext, 45f)) + IScreen.dip2px(mContext, 50f);
         } else {
             height = list.size() * (IScreen.dip2px(mContext, 45f)) + IScreen.dip2px(mContext, 50f);
         }
