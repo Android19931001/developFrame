@@ -96,8 +96,7 @@ public class SheetSelectDialog<T> extends Dialog implements View.OnClickListener
     private void initAdapter() {
         selectAdapter = new AppAdapter<T>(mContext, new ArrayList<T>(), R.layout.select_adapter_layout) {
             @Override
-            public View getChildView(IViewHelper helper, final int position, T item) {
-                final T t = data.get(position);
+            public View getChildView(IViewHelper helper, final int position, final T t) {
                 String text = null == t ? "" : (t instanceof OnSelectTextListener) ? ((OnSelectTextListener) t).getSelectText() : (t instanceof String) ? t.toString() : "";
                 helper.setText(R.id.tv_select_text, text);
                 final ImageView ivCheck = helper.getViews(R.id.iv_select_check);
