@@ -5,7 +5,6 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -72,7 +71,7 @@ public class IViewHelper {
      * @return
      */
     public <V extends View> V getViews(int viewId) {
-        if (sparseArray.get(viewId) == null) {
+        if (null == sparseArray.get(viewId)) {
             View childView = contentView.findViewById(viewId);
             sparseArray.put(viewId, childView);
             return (V) childView;
@@ -90,15 +89,6 @@ public class IViewHelper {
         return contentView;
     }
 
-    /**
-     * 获取ImageView控件
-     *
-     * @param viewId
-     * @return
-     */
-    public ImageView getImage(int viewId) {
-        return getViews(viewId);
-    }
 
     /**
      * 给控件添加点击事件

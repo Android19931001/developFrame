@@ -17,7 +17,7 @@ import java.util.List;
 
 public abstract class AppAdapter<T> extends BaseAdapter implements AdapterHandlerOption<T> {
 
-    public List<T> data;
+    private List<T> data;
     public Context context;
 
     private int layoutId;
@@ -112,8 +112,8 @@ public abstract class AppAdapter<T> extends BaseAdapter implements AdapterHandle
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         IViewHelper helper = IViewHelper.get(context, view, viewGroup, layoutId);
-        return getChildView(i, helper);
+        return getChildView(helper, i, data.get(i));
     }
 
-    public abstract View getChildView(int position, IViewHelper helper);
+    public abstract View getChildView(IViewHelper helper, int position, T item);
 }
