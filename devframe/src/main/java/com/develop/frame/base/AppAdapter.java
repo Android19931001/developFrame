@@ -17,7 +17,7 @@ import java.util.List;
 
 public abstract class AppAdapter<T> extends BaseAdapter implements AdapterHandlerOption<T> {
 
-    private List<T> data;
+    public List<T> data;
     public Context context;
 
     private int layoutId;
