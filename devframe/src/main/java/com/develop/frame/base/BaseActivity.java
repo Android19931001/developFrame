@@ -49,9 +49,9 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
                 .navigationBarColor(R.color.black_color)
                 .fitsSystemWindows(true);
         if ("Meizu".equals(IPhone.iBrand())) {
-            immersionBar.flymeOSStatusBarFontColor(R.color.black_30p);
+            immersionBar.flymeOSStatusBarFontColor(R.color.black);
         } else {
-            immersionBar.statusBarColor(R.color.black_30p);
+            immersionBar.statusBarColor(R.color.black);
         }
         immersionBar.init();
     }
