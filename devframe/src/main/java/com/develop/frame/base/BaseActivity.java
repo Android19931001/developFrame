@@ -13,8 +13,7 @@ import com.develop.frame.R;
 import com.develop.frame.bridge.ActivityPresenter;
 import com.develop.frame.utils.ILoading;
 import com.develop.frame.utils.IPhone;
-import com.gyf.immersionbar.ImmersionBar;
-import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+import com.gyf.barlibrary.ImmersionBar;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
@@ -187,15 +186,7 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
     protected void onDestroy() {
         super.onDestroy();
         ILoading.close();
+        ImmersionBar.with(this).destroy();
     }
 
-    /**
-     * 停止加载
-     */
-    public void finishRefreshLoading(TwinklingRefreshLayout refreshLayout) {
-        if (null != refreshLayout) {
-            refreshLayout.finishLoadmore();
-            refreshLayout.onFinishRefresh();
-        }
-    }
 }
