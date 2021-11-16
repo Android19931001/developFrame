@@ -155,6 +155,7 @@ public class WebkitActivity extends BaseActivity {
         }
     };
 
+
     /**
      * control memory leak
      */
