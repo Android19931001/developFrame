@@ -36,7 +36,6 @@ public class WebkitActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webkit);
-
         immersionBar.statusBarColor(R.color.color_87CEFF).navigationBarColor(R.color.black_color).init();
     }
 
