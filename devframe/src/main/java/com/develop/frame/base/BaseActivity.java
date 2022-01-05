@@ -1,8 +1,10 @@
 package com.develop.frame.base;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,14 +19,14 @@ import com.gyf.barlibrary.ImmersionBar;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 /**
  * Created by ht on 2017/9/8.
  */
 
-public abstract class BaseActivity extends FragmentActivity implements ActivityPresenter {
+public abstract class BaseActivity extends AppCompatActivity implements ActivityPresenter {
 
 
     public FragmentManager fm;
@@ -56,6 +58,12 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
         immersionBar.init();
     }
 
+    @Override
+    public View onCreateView(String name, Context context, AttributeSet attrs) {
+        initView();
+        initData();
+        return super.onCreateView(name, context, attrs);
+    }
 
     /**
      * 隐藏标题栏和导航栏
@@ -68,10 +76,6 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
     /**
      * 跳转
@@ -119,20 +123,6 @@ public abstract class BaseActivity extends FragmentActivity implements ActivityP
         jump(intent);
         if (isAnim)
             overridePendingTransition(R.anim.play_in, 0);
-    }
-
-
-    /**
-     * 查找控件不用强转
-     *
-     * @param viewId
-     * @param <V>
-     * @return
-     */
-    @SuppressWarnings("unchecked")
-    public <V extends View> V findView(int viewId) {
-        V v = this.findViewById(viewId);
-        return v;
     }
 
 

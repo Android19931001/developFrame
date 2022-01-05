@@ -21,6 +21,10 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
+
 }
 
 dependencies {
@@ -29,11 +33,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0'
     api 'com.gyf.immersionbar:immersionbar:2.3.3'
     api 'com.youth.banner:banner:1.4.9'
-    api 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.bumptech.glide:glide:4.4.0'
     implementation 'com.squareup.okhttp3:okhttp:3.9.0'
     //noinspection GradleCompatible
     api 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'com.tuyenmonkey:mkloader:1.0.0'
+    implementation 'com.tuyenmonkey:mkloader:1.4.0'
     api 'com.yuyh.imgsel:library:2.0.3'
 
     //选择器

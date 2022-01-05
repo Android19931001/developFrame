@@ -11,16 +11,20 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
 
 import com.develop.frame.R;
 import com.develop.frame.base.BaseActivity;
+import com.develop.frame.databinding.ActivityWebkitBinding;
 import com.develop.frame.utils.ILog;
+
+import androidx.databinding.DataBindingUtil;
 
 public class WebkitActivity extends BaseActivity {
 
     public static final String WEB_TITLE = "WEB_TITLE";
     public static final String WEB_URL = "WEB_URL";
+
+    private ActivityWebkitBinding webkitBinding;
 
     public static Intent toIntent(Context context, String title, String url) {
         return new Intent(context, WebkitActivity.class)
@@ -29,14 +33,13 @@ public class WebkitActivity extends BaseActivity {
     }
 
     private String webUrl, webTitle;
-    private TextView tvWebTitle;
-    private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webkit);
+        webkitBinding = DataBindingUtil.setContentView(this, R.layout.activity_webkit);
         immersionBar.statusBarColor(R.color.color_87CEFF).navigationBarColor(R.color.black_color).init();
+
     }
 
     @Override
@@ -46,8 +49,6 @@ public class WebkitActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        tvWebTitle = findView(R.id.tv_title_frame_center);
-        webView = findView(R.id.web_view);
         initWebView();
 
     }
@@ -56,8 +57,8 @@ public class WebkitActivity extends BaseActivity {
     public void initData() {
         webTitle = getIntent().getStringExtra(WEB_TITLE);
         webUrl = getIntent().getStringExtra(WEB_URL);
-        tvWebTitle.setText(webTitle);
-        webView.loadUrl(webUrl);
+        webkitBinding.topView.tvTitleFrameCenter.setText(webTitle);
+        webkitBinding.webView.loadUrl(webUrl);
     }
 
 
@@ -65,7 +66,7 @@ public class WebkitActivity extends BaseActivity {
      * init webview settings
      */
     private void initWebView() {
-        WebSettings settings = webView.getSettings();
+        WebSettings settings = webkitBinding.webView.getSettings();
         settings.setSupportZoom(false);//支持缩放
         settings.setJavaScriptEnabled(true);//支持javaScript
         settings.setGeolocationEnabled(true);//打开位置定位
@@ -74,9 +75,9 @@ public class WebkitActivity extends BaseActivity {
         settings.setDatabaseEnabled(true);   //开启 database storage API 功能
         settings.setAppCacheEnabled(true);//开启 Application Caches 功能
         adapterWebView(settings);
-        webView.requestFocus();
-        webView.setWebChromeClient(webChromeClient);
-        webView.setWebViewClient(webViewClient);
+        webkitBinding.webView.requestFocus();
+        webkitBinding.webView.setWebChromeClient(webChromeClient);
+        webkitBinding.webView.setWebViewClient(webViewClient);
 
     }
 
@@ -105,7 +106,7 @@ public class WebkitActivity extends BaseActivity {
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
-            tvWebTitle.setText(title);
+            webkitBinding.topView.tvTitleFrameCenter.setText(title);
         }
 
 
@@ -162,12 +163,11 @@ public class WebkitActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (webView != null) {
-            webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
-            webView.clearHistory();
-            ((ViewGroup) webView.getParent()).removeView(webView);
-            webView.destroy();
-            webView = null;
+        if (webkitBinding.webView != null) {
+            webkitBinding.webView.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
+            webkitBinding.webView.clearHistory();
+            ((ViewGroup) webkitBinding.webView.getParent()).removeView(webkitBinding.webView);
+            webkitBinding.webView.destroy();
         }
     }
 }

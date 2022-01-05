@@ -4,25 +4,26 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.develop.frame.R;
 import com.develop.frame.base.BaseActivity;
+import com.develop.frame.databinding.ActivityIshowPicBinding;
 import com.develop.frame.utils.IGlide;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 public class IShowPicActivity extends BaseActivity {
 
-    private ViewPager vpIv;
-    private TextView tvTitle;
+    private ActivityIshowPicBinding ishowPicBinding;
     private List<String> list = new ArrayList<>();
 
     private static final String IMAGE_URLS = "IMAGE_URLS";
@@ -45,7 +46,7 @@ public class IShowPicActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ishow_pic);
+        ishowPicBinding = DataBindingUtil.setContentView(this,R.layout.activity_ishow_pic);
         immersionBar.fitsSystemWindows(true).statusBarColor(R.color.blue_3EADFD).init();
         initView();
         initData();
@@ -60,24 +61,22 @@ public class IShowPicActivity extends BaseActivity {
     public void initView() {
         list = getIntent().getStringArrayListExtra(IMAGE_URLS);
         int position = getIntent().getIntExtra(IMAGE_POSITION, 0);
-        tvTitle = findView(R.id.tv_title_frame_center);
-        vpIv = findView(R.id.vp_iv);
-        findView(R.id.rl_view_top_app).setBackgroundResource(R.color.blue_3EADFD);
-        tvTitle.setText((position + 1) + "/" + list.size());
-        vpIv.setAdapter(new ImagePageAdapter());
-        vpIv.setCurrentItem(position);
+        ishowPicBinding.activityTopView.rlViewTopApp.setBackgroundResource(R.color.blue_3EADFD);
+        ishowPicBinding.activityTopView.tvTitleFrameCenter.setText((position + 1) + "/" + list.size());
+        ishowPicBinding.vpIv.setAdapter(new ImagePageAdapter());
+        ishowPicBinding.vpIv.setCurrentItem(position);
     }
 
     @Override
     public void initData() {
-        findView(R.id.iv_back_frame_left).setOnClickListener(new View.OnClickListener() {
+        ishowPicBinding.activityTopView.ivBackFrameLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().finish();
             }
         });
 
-        vpIv.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        ishowPicBinding.vpIv.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -85,7 +84,7 @@ public class IShowPicActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                tvTitle.setText((++position) + "/" + list.size());
+                ishowPicBinding.activityTopView.tvTitleFrameCenter.setText((++position) + "/" + list.size());
             }
 
             @Override

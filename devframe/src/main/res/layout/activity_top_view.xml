@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:id="@+id/rl_view_top_app"
-    android:paddingLeft="@dimen/dimen_10dp"
-    android:paddingRight="@dimen/dimen_10dp"
-    android:background="@color/gray_484443">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:id="@+id/iv_back_frame_left"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_arrow_back" />
+    <RelativeLayout
+        android:id="@+id/rl_view_top_app"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/gray_484443"
+        android:paddingLeft="@dimen/dimen_10dp"
+        android:paddingRight="@dimen/dimen_10dp">
 
-    <TextView
-        android:id="@+id/tv_title_frame_center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="标题"
-        android:textColor="@color/white_color"
-        android:textSize="18sp" />
+        <ImageView
+            android:id="@+id/iv_back_frame_left"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_arrow_back" />
 
-    <TextView
-        android:id="@+id/tv_btn_frame_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text=""
-        android:textColor="@color/white_color" />
+        <TextView
+            android:id="@+id/tv_title_frame_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="标题"
+            android:textColor="@color/white_color"
+            android:textSize="18sp" />
 
-    <ImageView
-        android:id="@+id/iv_btn_frame_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_btn_frame_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text=""
+            android:textColor="@color/white_color" />
+
+        <ImageView
+            android:id="@+id/iv_btn_frame_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+</layout>
