@@ -20,7 +20,7 @@ public class IToast {
         try {
             Toast.makeText(BaseAppActivity.mActivity, msg, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            ILog.e("吐司发生异常" + IGson.iJsonStr(e));
+            ILog.e("Toast has exception:" + IGson.iJsonStr(e));
         }
 
     }
@@ -34,7 +34,7 @@ public class IToast {
         try {
             Toast.makeText(BaseAppActivity.mActivity, msg, Toast.LENGTH_LONG).show();
         } catch (Exception e) {
-            ILog.e("吐司发生异常" + IGson.iJsonStr(e));
+            ILog.e("Toast has exception:" + IGson.iJsonStr(e));
         }
 
     }
@@ -50,7 +50,7 @@ public class IToast {
         try {
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            ILog.e("吐司发生异常" + IGson.iJsonStr(e));
+            ILog.e("Toast has exception:" + IGson.iJsonStr(e));
         }
     }
 }

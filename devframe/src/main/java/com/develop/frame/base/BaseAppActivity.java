@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.develop.frame.network.ApiGenerator;
+import com.develop.frame.utils.ISp;
 
 /**
  * Created by wangning on 2019/12/24.
@@ -19,6 +20,14 @@ public class BaseAppActivity extends Application {
     public void onCreate() {
         super.onCreate();
         mActivity = getApplicationContext();
+
+    }
+
+    /**
+     * 初始化各种配置
+     */
+    public void initSetting() {
+        ISp.initSp();
     }
 
 

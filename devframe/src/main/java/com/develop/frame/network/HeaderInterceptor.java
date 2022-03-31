@@ -1,6 +1,5 @@
 package com.develop.frame.network;
 
-import com.develop.frame.base.BaseAppActivity;
 import com.develop.frame.utils.ISp;
 
 import java.io.IOException;
@@ -25,7 +24,7 @@ public class HeaderInterceptor implements Interceptor {
         if (!ReceiveInterceptor.cookies.isEmpty()) {
             builder.addHeader("Cookie", ReceiveInterceptor.cookies);
         }
-        String token = ISp.getStringValue(BaseAppActivity.mActivity, "LOGIN_TOKEN");
+        String token = ISp.getStringValue("LOGIN_TOKEN");
         if (!token.isEmpty()) {
             builder.addHeader("token", token);
         }

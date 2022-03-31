@@ -1,8 +1,9 @@
 package com.develop.frame.utils;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import com.develop.frame.base.BaseAppActivity;
 
 /**
  * Created by ht on 2017/9/11.
@@ -16,16 +17,20 @@ public class ISp {
 
     private static ISp sp;
 
+    private ISp() {
+
+    }
+
     /**
      * 初始化共享参数工具类
-     *
-     * @param context
      */
-    private static void init(Context context) {
+    public static void initSp() {
         if (sp == null) {
-            mEditor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-            mPreference = PreferenceManager.getDefaultSharedPreferences(context);
-            sp = new ISp();
+            synchronized (ISp.class) {
+                mEditor = PreferenceManager.getDefaultSharedPreferences(BaseAppActivity.mActivity).edit();
+                mPreference = PreferenceManager.getDefaultSharedPreferences(BaseAppActivity.mActivity);
+                sp = new ISp();
+            }
         }
     }
 
@@ -36,9 +41,12 @@ public class ISp {
      * @param value
      */
 
-    public static void setValue(Context context, String key, String value) {
-        init(context);
-        mEditor.putString(key, value).commit();
+    public static void setValue(String key, String value) {
+        try {
+            mEditor.putString(key, value).commit();
+        } catch (Exception e) {
+            System.out.println("This Object has not init!");
+        }
     }
 
 
@@ -48,9 +56,12 @@ public class ISp {
      * @param key
      * @param value
      */
-    public static void setValue(Context context, String key, long value) {
-        init(context);
-        mEditor.putLong(key, value).commit();
+    public static void setValue(String key, long value) {
+        try {
+            mEditor.putLong(key, value).commit();
+        } catch (Exception e) {
+            System.out.println("This Object has not init!");
+        }
     }
 
     /**
@@ -59,9 +70,12 @@ public class ISp {
      * @param key
      * @param value
      */
-    public static void setValue(Context context, String key, int value) {
-        init(context);
-        mEditor.putInt(key, value).commit();
+    public static void setValue(String key, int value) {
+        try {
+            mEditor.putInt(key, value).commit();
+        } catch (Exception e) {
+            System.out.println("This Object has not init!");
+        }
     }
 
     /**
@@ -70,9 +84,12 @@ public class ISp {
      * @param key
      * @param value
      */
-    public static void setValue(Context context, String key, float value) {
-        init(context);
-        mEditor.putFloat(key, value).commit();
+    public static void setValue(String key, float value) {
+        try {
+            mEditor.putFloat(key, value).commit();
+        } catch (Exception e) {
+            System.out.println("This Object has not init!");
+        }
     }
 
     /**
@@ -81,9 +98,12 @@ public class ISp {
      * @param key
      * @param value
      */
-    public static void setValue(Context context, String key, boolean value) {
-        init(context);
-        mEditor.putBoolean(key, value).commit();
+    public static void setValue(String key, boolean value) {
+        try {
+            mEditor.putBoolean(key, value).commit();
+        } catch (Exception e) {
+            System.out.println("This Object has not init!");
+        }
     }
 
     /**
@@ -93,9 +113,13 @@ public class ISp {
      * @return
      */
 
-    public static String getStringValue(Context context, String key) {
-        init(context);
-        return mPreference.getString(key, "");
+    public static String getStringValue(String key) {
+        try {
+            return mPreference.getString(key, "");
+        } catch (Exception e) {
+            System.out.println("This Object has not init!");
+        }
+        return "";
     }
 
     /**
@@ -104,9 +128,13 @@ public class ISp {
      * @param key
      * @return
      */
-    public static Boolean getBooleanValue(Context context, String key) {
-        init(context);
-        return mPreference.getBoolean(key, false);
+    public static Boolean getBooleanValue(String key) {
+        try {
+            return mPreference.getBoolean(key, false);
+        } catch (Exception e) {
+            System.out.println("This Object has not init!");
+        }
+        return false;
     }
 
 
@@ -116,9 +144,13 @@ public class ISp {
      * @param key
      * @return
      */
-    public static Float getFloatValue(Context context, String key) {
-        init(context);
-        return mPreference.getFloat(key, Float.MAX_VALUE);
+    public static Float getFloatValue(String key) {
+        try {
+            return mPreference.getFloat(key, 0f);
+        } catch (Exception e) {
+            System.out.println("This Object has not init!");
+        }
+        return 0f;
     }
 
 
@@ -128,9 +160,13 @@ public class ISp {
      * @param key
      * @return
      */
-    public static Integer getIntValue(Context context, String key) {
-        init(context);
-        return mPreference.getInt(key, -1);
+    public static Integer getIntValue(String key) {
+        try {
+            return mPreference.getInt(key, -1);
+        } catch (Exception e) {
+            System.out.println("This Object has not init!");
+        }
+        return -1;
     }
 
 
@@ -140,8 +176,12 @@ public class ISp {
      * @param key
      * @return
      */
-    public static Long getLongValue(Context context, String key) {
-        init(context);
-        return mPreference.getLong(key, Long.MAX_VALUE);
+    public static Long getLongValue(String key) {
+        try {
+            return mPreference.getLong(key, 0L);
+        } catch (Exception e) {
+            System.out.println("This Object has not init!");
+        }
+        return 0L;
     }
 }

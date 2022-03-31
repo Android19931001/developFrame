@@ -13,14 +13,6 @@
         android:resizeableActivity="true"
         android:supportsRtl="true">
         <activity
-            android:name=".activity.TestActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".activity.WebkitActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
